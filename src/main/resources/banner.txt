@@ -1,8 +1,0 @@
-
-  ${AnsiColor.GREEN}      ██ ${AnsiColor.RED} ██    ██  ████████  ███████    ██████  ████████  ████████  ███████
-  ${AnsiColor.GREEN}      ██ ${AnsiColor.RED} ██    ██     ██     ██    ██  ██          ██     ██        ██    ██
-  ${AnsiColor.GREEN}      ██ ${AnsiColor.RED} ████████     ██     ███████    █████      ██     ██████    ███████
-  ${AnsiColor.GREEN}██    ██ ${AnsiColor.RED} ██    ██     ██     ██             ██     ██     ██        ██   ██
-  ${AnsiColor.GREEN} ██████  ${AnsiColor.RED} ██    ██  ████████  ██        ██████      ██     ████████  ██    ██
-
-${AnsiColor.BRIGHT_BLUE}:: Platform Registry :: Running Spring Boot ${spring-boot.version} ::
