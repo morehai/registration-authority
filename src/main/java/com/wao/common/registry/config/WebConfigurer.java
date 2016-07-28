@@ -38,7 +38,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
 	private Environment env;
 
 	@Inject
-	private JHipsterProperties jHipsterProperties;
+	private PlatformProperties platformProperties;
 
 	@Autowired(required = false)
 	private MetricRegistry metricRegistry;
@@ -61,15 +61,10 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
 	@Override
 	public void customize(ConfigurableEmbeddedServletContainer container) {
 		MimeMappings mappings = new MimeMappings(MimeMappings.DEFAULT);
-		// IE issue, see https://github.com/jhipster/generator-jhipster/pull/711
 		mappings.add("html", "text/html;charset=utf-8");
-		// CloudFoundry issue, see
-		// https://github.com/cloudfoundry/gorouter/issues/64
 		mappings.add("json", "text/html;charset=utf-8");
 		container.setMimeMappings(mappings);
 
-		// When running in an IDE or with ./mvnw spring-boot:run, set location
-		// of the static web assets.
 		File root;
 		if (env.acceptsProfiles(Constants.SPRING_PROFILE_PRODUCTION)) {
 			root = new File("target/www/");
@@ -87,7 +82,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
 	private void initCachingHttpHeadersFilter(ServletContext servletContext, EnumSet<DispatcherType> disps) {
 		log.debug("Registering Caching HTTP Headers Filter");
 		FilterRegistration.Dynamic cachingHttpHeadersFilter = servletContext.addFilter("cachingHttpHeadersFilter",
-				new CachingHttpHeadersFilter(jHipsterProperties));
+				new CachingHttpHeadersFilter(platformProperties));
 
 		cachingHttpHeadersFilter.addMappingForUrlPatterns(disps, true, "/content/*");
 		cachingHttpHeadersFilter.addMappingForUrlPatterns(disps, true, "/app/*");
@@ -113,7 +108,7 @@ public class WebConfigurer implements ServletContextInitializer, EmbeddedServlet
 		ServletRegistration.Dynamic metricsAdminServlet = servletContext.addServlet("metricsServlet",
 				new MetricsServlet());
 
-		metricsAdminServlet.addMapping("/management/jhipster/metrics/*");
+		metricsAdminServlet.addMapping("/management/platform/metrics/*");
 		metricsAdminServlet.setAsyncSupported(true);
 		metricsAdminServlet.setLoadOnStartup(2);
 	}

@@ -51,7 +51,7 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter {
     private HealthCheckRegistry healthCheckRegistry = new HealthCheckRegistry();
 
     @Inject
-    private JHipsterProperties jHipsterProperties;
+    private PlatformProperties platformProperties;
 
     @Override
     @Bean
@@ -73,20 +73,20 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter {
         metricRegistry.register(PROP_METRIC_REG_JVM_THREADS, new ThreadStatesGaugeSet());
         metricRegistry.register(PROP_METRIC_REG_JVM_FILES, new FileDescriptorRatioGauge());
         metricRegistry.register(PROP_METRIC_REG_JVM_BUFFERS, new BufferPoolMetricSet(ManagementFactory.getPlatformMBeanServer()));
-        if (jHipsterProperties.getMetrics().getJmx().isEnabled()) {
+        if (platformProperties.getMetrics().getJmx().isEnabled()) {
             log.debug("Initializing Metrics JMX reporting");
             JmxReporter jmxReporter = JmxReporter.forRegistry(metricRegistry).build();
             jmxReporter.start();
         }
 
-        if (jHipsterProperties.getMetrics().getLogs().isEnabled()) {
+        if (platformProperties.getMetrics().getLogs().isEnabled()) {
             log.info("Initializing Metrics Log reporting");
             final Slf4jReporter reporter = Slf4jReporter.forRegistry(metricRegistry)
                 .outputTo(LoggerFactory.getLogger("metrics"))
                 .convertRatesTo(TimeUnit.SECONDS)
                 .convertDurationsTo(TimeUnit.MILLISECONDS)
                 .build();
-            reporter.start(jHipsterProperties.getMetrics().getLogs().getReportFrequency(), TimeUnit.SECONDS);
+            reporter.start(platformProperties.getMetrics().getLogs().getReportFrequency(), TimeUnit.SECONDS);
         }
     }
 
@@ -100,15 +100,15 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter {
         private MetricRegistry metricRegistry;
 
         @Inject
-        private JHipsterProperties jHipsterProperties;
+        private PlatformProperties platformProperties;
 
         @PostConstruct
         private void init() {
-            if (jHipsterProperties.getMetrics().getGraphite().isEnabled()) {
+            if (platformProperties.getMetrics().getGraphite().isEnabled()) {
                 log.info("Initializing Metrics Graphite reporting");
-                String graphiteHost = jHipsterProperties.getMetrics().getGraphite().getHost();
-                Integer graphitePort = jHipsterProperties.getMetrics().getGraphite().getPort();
-                String graphitePrefix = jHipsterProperties.getMetrics().getGraphite().getPrefix();
+                String graphiteHost = platformProperties.getMetrics().getGraphite().getHost();
+                Integer graphitePort = platformProperties.getMetrics().getGraphite().getPort();
+                String graphitePrefix = platformProperties.getMetrics().getGraphite().getPrefix();
                 Graphite graphite = new Graphite(new InetSocketAddress(graphiteHost, graphitePort));
                 GraphiteReporter graphiteReporter = GraphiteReporter.forRegistry(metricRegistry)
                     .convertRatesTo(TimeUnit.SECONDS)
@@ -122,7 +122,7 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter {
 
     /* Spectator metrics log reporting */
     @Bean
-    @ConditionalOnProperty("jhipster.logging.spectator-metrics.enabled")
+    @ConditionalOnProperty("platform.logging.spectator-metrics.enabled")
     @ExportMetricReader
     public SpectatorMetricReader SpectatorMetricReader(Registry registry) {
         log.info("Initializing Spectator Metrics Log reporting");
@@ -130,7 +130,7 @@ public class MetricsConfiguration extends MetricsConfigurerAdapter {
     }
 
     @Bean
-    @ConditionalOnProperty("jhipster.logging.spectator-metrics.enabled")
+    @ConditionalOnProperty("platform.logging.spectator-metrics.enabled")
     @ExportMetricWriter
     MetricWriter metricWriter() {
         return new SpectatorLogMetricWriter();

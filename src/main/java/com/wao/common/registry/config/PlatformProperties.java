@@ -3,14 +3,14 @@ package com.wao.common.registry.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Properties specific to JHipster.
+ * Properties specific to Platform.
  *
  * <p>
  * Properties are configured in the application.yml file.
  * </p>
  */
-@ConfigurationProperties(prefix = "jhipster", ignoreUnknownFields = false)
-public class JHipsterProperties {
+@ConfigurationProperties(prefix = "platform", ignoreUnknownFields = false)
+public class PlatformProperties {
 
 	private final Http http = new Http();
 
@@ -188,7 +188,7 @@ public class JHipsterProperties {
 
 			private int port = 2003;
 
-			private String prefix = "registration-authority";
+			private String prefix = "platform-registry";
 
 			public boolean isEnabled() {
 				return enabled;

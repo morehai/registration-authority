@@ -9,12 +9,12 @@
         <relativePath/>
     </parent>
 
-    <groupId>io.github.jhipster</groupId>
-    <artifactId>registration-authority</artifactId>
+    <groupId>com.wao.common</groupId>
+    <artifactId>platform-registry</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>Registration Authority</name>
-    <description>system service registry, made with Netflix Eureka and Spring Cloud Config</description>
+    <name>Platform Registry</name>
+    <description>platform service registry, made with Netflix Eureka and Spring Cloud Config</description>
 
     <prerequisites>
         <maven>3.0.0</maven>
@@ -248,11 +248,11 @@
                 <configuration>
                     <rules>
                         <requireMavenVersion>
-                            <message>You are running an older version of Maven. JHipster requires at least Maven 3.0</message>
+                            <message>You are running an older version of Maven. Platform requires at least Maven 3.0</message>
                             <version>[3.0.0,)</version>
                         </requireMavenVersion>
                         <requireJavaVersion>
-                            <message>You are running an older version of Java. JHipster requires at least JDK ${java.version}</message>
+                            <message>You are running an older version of Java. Platform requires at least JDK ${java.version}</message>
                             <version>[${java.version}.0,)</version>
                         </requireJavaVersion>
                     </rules>
@@ -321,7 +321,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.10</version>
                 <configuration>
-                    <imageName>jhipster/registration-authority:dev</imageName>
+                    <imageName>platform/platform-registry:dev</imageName>
                     <dockerDirectory>src/main/docker/dev</dockerDirectory>
                     <resources>
                         <resource>
@@ -332,7 +332,7 @@
                     </resources>
                 </configuration>
             </plugin>
-            <!-- jhipster-needle-maven-add-plugin -->
+            <!-- platform-needle-maven-add-plugin -->
         </plugins>
         <pluginManagement>
             <plugins>

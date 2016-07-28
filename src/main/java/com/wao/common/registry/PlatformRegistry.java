@@ -19,28 +19,25 @@ import org.springframework.core.env.Environment;
 
 import com.wao.common.registry.config.Constants;
 import com.wao.common.registry.config.DefaultProfileUtil;
-import com.wao.common.registry.config.JHipsterProperties;
+import com.wao.common.registry.config.PlatformProperties;
 
 @SpringBootApplication
 @EnableEurekaServer
 @EnableConfigServer
-@EnableConfigurationProperties({ JHipsterProperties.class })
-public class JHipsterRegistry {
+@EnableConfigurationProperties({ PlatformProperties.class })
+public class PlatformRegistry {
 
-	private static final Logger log = LoggerFactory.getLogger(JHipsterRegistry.class);
+	private static final Logger log = LoggerFactory.getLogger(PlatformRegistry.class);
 
 	@Inject
 	private Environment env;
 
 	/**
-	 * Initializes jhipsterRegistry.
+	 * Initializes registrationAuthority.
 	 * <p>
 	 * Spring profiles can be configured with a program arguments
 	 * --spring.profiles.active=your-active-profile
 	 * <p>
-	 * You can find more information on how profiles work with JHipster on
-	 * <a href=
-	 * "http://jhipster.github.io/profiles/">http://jhipster.github.io/profiles/</a>.
 	 */
 	@PostConstruct
 	public void initApplication() {
@@ -67,7 +64,7 @@ public class JHipsterRegistry {
 	 *             if the local host name could not be resolved into an address
 	 */
 	public static void main(String[] args) throws UnknownHostException {
-		SpringApplication app = new SpringApplication(JHipsterRegistry.class);
+		SpringApplication app = new SpringApplication(PlatformRegistry.class);
 		DefaultProfileUtil.addDefaultProfile(app);
 		Environment env = app.run(args).getEnvironment();
 		log.info(

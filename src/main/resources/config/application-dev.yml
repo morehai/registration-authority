@@ -24,7 +24,7 @@ eureka:
         serviceUrl:
             defaultZone: http://admin:${security.user.password:admin}@localhost:8761/eureka/
 
-jhipster:
+platform:
     security:
         authentication:
             jwt:
@@ -69,8 +69,8 @@ spring:
                 native:
                     search-locations: file:./central-config
                 git:
-                    # sample prod config using the central-directory folder in the registration-authority github repos
-                    uri: https://github.com/morehai/registration-authority/
+                    # sample prod config using the central-directory folder in the platform-registry github repos
+                    uri: https://github.com/morehai/platform-registry/
                     search-paths: central-config
                 prefix: /config
     thymeleaf:

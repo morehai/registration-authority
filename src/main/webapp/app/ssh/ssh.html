@@ -19,7 +19,7 @@
         <h3><span class="glyphicon glyphicon-info-sign"></span> Using SSH with Docker</h3>
         <p>
             Here are detailed instruction when using the Registration Authority Docker image, available at
-            <a href="https://hub.docker.com/r/morehai/registration-authority/" target="_blank">jhipster/jhipster-registry/</a>.
+            <a href="https://hub.docker.com/r/morehai/platform-registry/" target="_blank">morehai/platform-registry/</a>.
         </p>
 
         <ul>
@@ -45,14 +45,14 @@
         <div hljs hljs-language="yaml">
     version: '2'
       services:
-        registration-authority:
-          container_name: registration-authority
-          image: jhipster/registration-authority
+        platform-registry:
+          container_name: platform-registry
+          image: morehai/platform-registry
       volumes:
         - ./ssh/:/root/.ssh/
       environment:
         - SPRING_PROFILES_ACTIVE=prod
-        - GIT_URI=ssh:git@github.com:jhipster/test-registry.git
+        - GIT_URI=ssh:git@github.com:morehai/test-registry.git
       ports:
         - 8761:8761
         </div>

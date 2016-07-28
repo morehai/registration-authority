@@ -33,7 +33,7 @@ management:
 
 spring:
     application:
-        name: registration-authority
+        name: platform-registry
     mvc:
         favicon:
             enabled: false

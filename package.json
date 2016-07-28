@@ -1,5 +1,5 @@
 {
-  "name": "registration-authority",
+  "name": "platform-registry",
   "version": "2.1.0",
   "description": "Registration Authority",
   "private": true,

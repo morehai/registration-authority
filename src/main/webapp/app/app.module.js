@@ -11,7 +11,7 @@
             'ui.bootstrap',
             'ui.router',
             'hljs',
-            // jhipster-needle-angularjs-add-module JHipster will add new module here
+            // platform-needle-angularjs-add-module JHipster will add new module here
             'angular-loading-bar'
         ])
         .run(run);

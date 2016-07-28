@@ -52,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
          .and()
             .httpBasic()
-            .realmName("JHipster Registry")
+            .realmName("Platform Registry")
         .and()
             .authorizeRequests()
             .antMatchers("/eureka/**").hasAuthority(AuthoritiesConstants.ADMIN)
