@@ -1,2 +1,1 @@
-# registration-authority
-base on the jhipster-registry
+# Registration Authority

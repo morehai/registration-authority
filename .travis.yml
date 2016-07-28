@@ -1,0 +1,11 @@
+os:
+  - linux
+services:
+  - docker
+install:
+  - docker build -t jhipster/registration-authority:travis .
+  - docker run --name registration-authority -p 8761:8761 -d -t jhipster/registration-authority:travis
+script:
+  - sleep 30
+  - docker ps
+  - docker logs registration-authority
